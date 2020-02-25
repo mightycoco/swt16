@@ -114,8 +114,15 @@ void loop() {
                 delay(isIdle ? 120 : 30);
                 checkButtons();
                 updateDisplay();
-                if (digitalRead(HOME_BUTTON) == HIGH && (currentMode != MODE_HOME || isIdle)) {
-                        setMode(MODE_HOME);
+                if (currentMode != MODE_HOME || isIdle) {
+                        if(digitalRead(HOME_BUTTON) == HIGH && btn_home_state == LOW) {
+                                btn_home_state = HIGH;
+                        } else if(digitalRead(HOME_BUTTON) == LOW && btn_home_state == HIGH) {
+                                setMode(MODE_HOME);
+                                btn_home_state == LOW;
+                        } else if(digitalRead(HOME_BUTTON) == LOW && btn_home_state == INTERMEDIATE) {
+                                btn_home_state = LOW;
+                        }
                 }
         }
 }
