@@ -12,50 +12,44 @@ void checkButtons() {
                 for (uint8_t foo = 0; foo < 16; foo++) {
                         if (justPressed(flipMode ? 15 - foo : foo)) {
                                 resetIdle();
-                                if (digitalRead(HOME_BUTTON) == HIGH) {
-                                        btn_home_state = INTERMEDIATE;
-                                        currentMode = MODE_SELECT_TRACK;
+                                if (currentMode == MODE_HOME) {
+                                        setMode(foo);
+                                        break;
+                                } else if (currentMode == MODE_AUTOPLAY) {
+                                        onModeAutoPlay(foo);
+                                } else if (currentMode == MODE_PERFORMANCE) {
+                                        onModePerformance(foo);
+                                } else if (currentMode == MODE_LENGTH_RESET) {
+                                        onModeLengthReset(foo);
+                                } else if (currentMode == MODE_INVERSE) {
+                                        onModeInverse(foo);
+                                }  else if (currentMode == MODE_GATE_RETRIGGER) {
+                                        onModeGateRetrigger(foo);
+                                } else if (currentMode == MODE_MUTE) {
+                                        onModeMute(foo);
+                                }  else if (currentMode == MODE_SET_CLOCK_DIVIDER) {
+                                        onModeSetClockDivider(foo);
+                                        break;
+                                } else if (currentMode == MODE_LENGTH_EDIT) {
+                                        onModeLengthEdit(foo);
+                                        break;
+                                } else if (currentMode == MODE_SET_MIDI_CHANNEL) {
+                                        onModeSetMidiChannel(foo);
+                                        break;
+                                } else if (currentMode == MODE_PATTERN_EDIT) {
+                                        onModePatternEdit(foo);
+                                } else if (currentMode == MODE_TAP) {
+                                        onModeTap(foo);
+                                } else if (currentMode == MODE_RANDOM) {
+                                        onModeRandom(foo);
+                                } else if (currentMode == MODE_FILL) {
+                                        onModeFill(foo);
+                                } else if (currentMode == MODE_DELETE) {
+                                        onModeDelete(foo);
+                                } else if (currentMode == MODE_UTIL) {
+                                        onModeUtil(foo);
+                                } else if (currentMode == MODE_SELECT_TRACK || currentMode == MODE_LENGTH || currentMode == MODE_NOTES || currentMode == MODE_CLOCK) {
                                         onSelectTrack(foo);
-                                } else {
-                                        if (currentMode == MODE_HOME) {
-                                                setMode(foo);
-                                                break;
-                                        } else if (currentMode == MODE_AUTOPLAY) {
-                                                onModeAutoPlay(foo);
-                                        } else if (currentMode == MODE_PERFORMANCE) {
-                                                onModePerformance(foo);
-                                        } else if (currentMode == MODE_LENGTH_RESET) {
-                                                onModeLengthReset(foo);
-                                        } else if (currentMode == MODE_INVERSE) {
-                                                onModeInverse(foo);
-                                        }  else if (currentMode == MODE_GATE_RETRIGGER) {
-                                                onModeGateRetrigger(foo);
-                                        } else if (currentMode == MODE_MUTE) {
-                                                onModeMute(foo);
-                                        }  else if (currentMode == MODE_SET_CLOCK_DIVIDER) {
-                                                onModeSetClockDivider(foo);
-                                                break;
-                                        } else if (currentMode == MODE_LENGTH_EDIT) {
-                                                onModeLengthEdit(foo);
-                                                break;
-                                        } else if (currentMode == MODE_SET_MIDI_CHANNEL) {
-                                                onModeSetMidiChannel(foo);
-                                                break;
-                                        } else if (currentMode == MODE_PATTERN_EDIT) {
-                                                onModePatternEdit(foo);
-                                        } else if (currentMode == MODE_TAP) {
-                                                onModeTap(foo);
-                                        } else if (currentMode == MODE_RANDOM) {
-                                                onModeRandom(foo);
-                                        } else if (currentMode == MODE_FILL) {
-                                                onModeFill(foo);
-                                        } else if (currentMode == MODE_DELETE) {
-                                                onModeDelete(foo);
-                                        } else if (currentMode == MODE_UTIL) {
-                                                onModeUtil(foo);
-                                        } else if (currentMode == MODE_SELECT_TRACK || currentMode == MODE_LENGTH || currentMode == MODE_NOTES || currentMode == MODE_CLOCK) {
-                                                onSelectTrack(foo);
-                                        }
                                 }
                         }
                         if (justReleased(flipMode ? 15 - foo : foo)) {

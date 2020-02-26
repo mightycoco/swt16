@@ -70,10 +70,6 @@
 #define PATTERN_BAR_6 18
 #define PATTERN_BAR_7 19
 
-#define INTERMEDIATE 0x2
-
-unsigned int btn_home_state = LOW;
-
 unsigned long onClockHighTime = 0;
 unsigned long onClockLowTime = 0;
 boolean lightIsHigh = false;
